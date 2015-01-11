@@ -11,14 +11,26 @@
             color:blue;
             font-size:200%;
         }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        #underline {
+            text-decoration: underline;
+        }
+
+        .green {
+            color:green;
+        }
     </style>
 </head>
 
 <body>
 <div>
-    <h1>Example Domain</h1>
-    <p>This domain is established to be used for illustrative examples in documents. You may use this
-    domain in examples without prior coordination or asking for permission.</p>
+    <h1 class="green">Example Domain</h1>
+    <p>This domain is <span class="bold">established</span> to be used for illustrative examples in documents. You may use this
+    domain in examples <span id="underline" class="bold">without</span> prior coordination or <span class="bold green">asking for permission.</span></p>
     <p><a href="http://www.iana.org/domains/example">More information...</a></p>
 </div>
 </body>
