@@ -1,42 +1,75 @@
 <!doctype html>
 <html>
 <head>
-    <title>Learning CSS</title>
+    <!--create a clone of the BBC site-->
+    <title>BBC News - UK</title>
 
     <meta charset="utf-8" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />  
     <style type"text/css">
-        p {
-            color:blue;
-            font-size:200%;
+        body{
+            font-family: arial, helvetica, sans-serif;
+            margin:0;
+        }
+        #navigation-bar{
+            background-color:rgba(0,0,0,0.3);
+            height:30px;
+            padding:5px 0 0 0;
+            color:white;
+            font-weight:bold;
+            font-size:80%;
+        }
+        .menu-container{
+            width:1000px;
+            margin: 0 auto;
+        }
+        #logo-container{
+            padding-right:5px;
+            float:left;
         }
 
-        .bold {
-            font-weight: bold;
+        #search-box{
+            float:right;
+        }
+        .menu-item{
+            float:right;
+            padding:7px;
         }
 
-        #underline {
-            text-decoration: underline;
+        #header{
+
         }
 
-        .green {
-            color:green;
+        #content{
+
         }
 
-        div {
-            background-color: yellow;
-            width:160px;
-        }
+        
     </style>
 </head>
 
 <body>
-    <div>
-        <h1 class="green">Example Domain</h1>
+    <div id="header">
+        <div id="navigation-bar">
+            <div class="menu-container">
+                <div id="logo-container">
+                    <img src="imgs/bbc-logo.png" />
+                </div>
+                <div id="search-box"><input type="text" /></div>
+                <div class="menu-item">More...</div>
+                <div class="menu-item">Radio</div>
+                <div class="menu-item">TV</div>
+                <div class="menu-item">Shop</div>
+                <div class="menu-item">Future</div>
+                <div class="menu-item">Earth</div>
+                <div class="menu-item">Weather</div>
+                <div class="menu-item">Sport</div>
+                <div class="menu-item">News</div>
+            </div>
+        </div>
     </div>
-    <p>This domain is <span class="bold">established</span> to be used for illustrative examples in documents. You may use this
-    domain in examples <span id="underline" class="bold">without</span> prior coordination or <span class="bold green">asking for permission.</span></p>
-    <p><a href="http://www.iana.org/domains/example">More information...</a></p>
+    <div id="content">
+    </div>
 </body>
 </html>
