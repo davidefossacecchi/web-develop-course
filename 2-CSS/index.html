@@ -20,8 +20,8 @@
             font-weight:bold;
             font-size:80%;
         }
-        .menu-container{
-            width:1000px;
+        .container{
+            width:955px;
             margin: 0 auto;
         }
         #logo-container{
@@ -37,8 +37,39 @@
             padding:7px;
         }
 
+        #category-container{
+            background-color:rgba(0,0,0,0.7);
+            margin-top: 69px;
+            height:20px;
+            color: white;
+            font-size:75%;
+            font-weight:bold;
+            padding:2px 0;
+        }
+        #news-container{
+            width:60%;
+            float:left;
+        }
+        #right-bar{
+            width:40%;
+            float:left;
+        }
+        .category-item{
+            float:left;
+            border-left: 1px #333333 solid;
+            padding: 0 5px;
+            margin-top:2px;
+        }
+
+        #first-category{
+            float:left;
+            padding: 0 5px;
+            margin-top:2px;
+        }
+
         #header{
             background-image: url('imgs/red-masthead.png');
+            background-position: center;
             height: 128px;
         }
 
@@ -53,7 +84,7 @@
 <body>
     <div id="header">
         <div id="navigation-bar">
-            <div class="menu-container">
+            <div class="container">
                 <div id="logo-container">
                     <img src="imgs/bbc-logo.png" />
                 </div>
@@ -69,8 +100,26 @@
                 <div class="menu-item">News</div>
             </div>
         </div>
+        <div id="category-container" class="container">
+            <div id="first-category">Home</div>
+            <div class="category-item">UK</div>
+            <div class="category-item">Africa</div>
+            <div class="category-item">Asia</div>
+            <div class="category-item">Australia</div>
+            <div class="category-item">Europe</div>
+            <div class="category-item">Latin America</div>
+            <div class="category-item">Mid-East</div>
+            <div class="category-item">US & Canada</div>
+            <div class="category-item">Business</div>
+            <div class="category-item">Health</div>
+            <div class="category-item">Sci/Environment</div>
+            <div class="category-item">Tech</div>
+            <div class="category-item">Entertainment</div>
+            <div class="category-item">Video</div>
+        </div>
     </div>
-    <div id="content">
+    <div id="content" class="container">
+
     </div>
 </body>
 </html>
