@@ -137,8 +137,8 @@
         document.getElementById("switch").onclick = function () {
             hasStarted = !hasStarted;
             if (!hasStarted){
-                document.getElementById("switch").innerHTML="START";
-                document.getElementById("switch").className="on";
+                this.innerHTML="START";
+                this.className="on";
                 document.getElementById("shape").className = "";
                 if (shapeAccumulator != 0){
                     mean = timeAccumulator/(shapeAccumulator*1000);
@@ -146,8 +146,8 @@
                 }
             }
             else{
-                document.getElementById("switch").innerHTML="STOP";
-                document.getElementById("switch").className="off";
+                this.innerHTML="STOP";
+                this.className="off";
                 shapeAccumulator = 0;
                 timeAccumulator = 0;
                 chooseShape();
@@ -155,6 +155,7 @@
         }
 
         document.getElementById("shape").onclick = function (){
+            this.style.display = "none";
             clickTime = Date.now();
             reactTime = clickTime - appearTime;
             shapeAccumulator++;
@@ -166,12 +167,13 @@
 
         function chooseShape(){
             oldIndex = index;
-            while(index == oldIndex){ //reiterate until the new shape isn't different from the ol one
+            while(index == oldIndex){ //reiterate until the new shape isn't different from the old one
                 index = Math.floor(Math.random()*shapes.length); 
             }
             document.getElementById("shape").className = shapes[index];
             document.getElementById("shape").style.left = Math.ceil(700*Math.random())+"px";
             document.getElementById("shape").style.top = Math.ceil(400*Math.random())+"px";
+            document.getElementById("shape").style.display = "block";
             appearTime = Date.now();
         }
 
