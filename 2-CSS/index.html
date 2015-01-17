@@ -12,29 +12,52 @@
             font-family: arial, helvetica, sans-serif;
             margin:0;
         }
-        #navigation-bar{
-            background-color:rgba(0,0,0,0.3);
-            height:30px;
-            padding:5px 0 0 0;
-            color:white;
-            font-weight:bold;
+
+        p{
+            color:#505050;
             font-size:80%;
         }
+
+        #header{
+            background-image: url('http://news.bbcimg.co.uk/view/1_4_38/cream/hi/news/img/red-masthead.png');
+            background-position: center;
+            height: 128px;
+        }
+
         .container{
             width:955px;
             margin: 0 auto;
         }
-        #logo-container{
+
+        #top{
+            background-color:rgba(0,0,0,0.3);
+            height:30px;
+            padding:5px 0 0 0;
+        }
+
+        #top img{
             padding-right:5px;
             float:left;
         }
 
-        #search-box{
+        #top ul{
+            color:white;
+            font-weight:bold;
+            font-size:80%;
             float:right;
+            padding:4px;
+            margin: 0;
         }
-        .menu-item{
-            float:right;
-            padding:7px;
+
+        #top li{
+            list-style: none;
+            float:left;
+            margin: 0 5px;
+        }
+
+        #top input{
+            position:relative;
+            top:-4px;
         }
 
         #category-container{
@@ -46,40 +69,48 @@
             font-weight:bold;
             padding:2px 0;
         }
-        .category-item{
+
+        #category-container ul{
+            float:left;
+            margin:2px 0;
+            padding:0;
+        }
+
+        #category-container li{
             float:left;
             border-left: 1px #333333 solid;
             padding: 0 5px;
             margin-top:2px;
+            list-style:none;
         }
 
-        #first-category{
-            float:left;
-            padding: 0 5px;
-            margin-top:2px;
+        #category-container li:first-child{
+            border: none; !important
         }
-
-        #header{
-            background-image: url('http://news.bbcimg.co.uk/view/1_4_38/cream/hi/news/img/red-masthead.png');
-            background-position: center;
-            height: 128px;
-        }
-
-        #content{
-
-        }
+        
         #news-container{
-            width:60%;
-            float:left;
-        }
-        #right-bar{
-            width:40%;
+            width:65%;
             float:left;
         }
 
-        p{
-            color:#505050;
-            font-size:80%;
+        #right-bar{
+            width:35%;
+            float:left;
+        }
+
+        #news-container div{
+            border-bottom: 1px solid #DDD;
+            height:237px;
+        }
+
+        #news-container p{
+            padding: 8px 0;
+            line-height:1.3em;
+            margin-top:0;
+        }
+
+        #news-container h2{
+            font-size:50%;
         }
 
         a{
@@ -92,26 +123,18 @@
             margin-bottom:3px;
         }
 
-        #news-container p{
-            border-top: 1px solid #DDD;
-            padding: 8px 0;
-            line-height:1.3em;
-        }
-
-        
-
         #news-container h2{
-            margin: 0;
+            margin: 0 0 17px 0;
             font-size: 170%;
         }
 
         #news-container img{
             float: left;
-            margin: 4px 10px 4px 0;
+            margin: 0 10px 4px 0;
         }
 
-        hr{
-            color:#505050;
+        #news-container h3{
+            margin-bottom: 0;
         }
         
     </style>
@@ -119,55 +142,57 @@
 
 <body>
     <div id="header">
-        <div id="navigation-bar">
+        <div id="top">
             <div class="container">
-                <div id="logo-container">
-                    <img src="imgs/bbc-logo.png" />
-                </div>
-                <div id="search-box"><input type="text" /></div>
-                <div class="menu-item">More...</div>
-                <div class="menu-item">Radio</div>
-                <div class="menu-item">TV</div>
-                <div class="menu-item">Shop</div>
-                <div class="menu-item">Future</div>
-                <div class="menu-item">Earth</div>
-                <div class="menu-item">Weather</div>
-                <div class="menu-item">Sport</div>
-                <div class="menu-item">News</div>
+                <img src="imgs/bbc-logo.png" />
+                <ul>
+                    <li>News</li>
+                    <li>Sport</li>
+                    <li>Weather</li>
+                    <li>Earth</li>
+                    <li>Future</li>
+                    <li>Shop</li>
+                    <li>TV</li>
+                    <li>Radio</li>
+                    <li>More...</li>
+                    <li><input type="text" /></li>
+                </ul>
             </div>
         </div>
         <div id="category-container" class="container">
-            <div id="first-category">Home</div>
-            <div class="category-item">UK</div>
-            <div class="category-item">Africa</div>
-            <div class="category-item">Asia</div>
-            <div class="category-item">Australia</div>
-            <div class="category-item">Europe</div>
-            <div class="category-item">Latin America</div>
-            <div class="category-item">Mid-East</div>
-            <div class="category-item">US & Canada</div>
-            <div class="category-item">Business</div>
-            <div class="category-item">Health</div>
-            <div class="category-item">Sci/Environment</div>
-            <div class="category-item">Tech</div>
-            <div class="category-item">Entertainment</div>
-            <div class="category-item">Video</div>
+            <ul>
+                <li>Home</li>
+                <li>UK</li>
+                <li>Africa</li>
+                <li>Asia</li>
+                <li>Australia</li>
+                <li>Europe</li>
+                <li>Latin America</li>
+                <li>Mid-East</li>
+                <li>US & Canada</li>
+                <li>Business</li>
+                <li>Health</li>
+                <li>Sci/Environment</li>
+                <li>Tech</li>
+                <li>Entertainment</li>
+                <li>Video</li>
+            </ul>
         </div>
     </div>
     <div id="content" class="container">
         <p><strong>14 January 2015</strong> Last updated at 20:07 GMT </p>
         <div id="news-container">
-            <a href="http://www.bbc.com/news/uk-30804065"><h2>Snow and storms sweep across UK</h2></a>
-
-            <p  style="border:none;padding-top:0;"><img src="http://news.bbcimg.co.uk/media/images/80272000/jpg/_80272006_80270521.jpg" />Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque leo leo, finibus id nibh in, pharetra blandit nunc. Integer congue scelerisque felis vitae faucibus. Sed lobortis tortor eu mi ultrices, in pulvinar mi feugiat. Nam gravida accumsan iaculis. Curabitur libero elit, varius sed massa ac, vestibulum congue nisl. Mauris eu bibendum leo. Nullam in consequat dolor. Cras sed vulputate lectus.</p>
-            <p>
+            <div>
+                <a href="http://www.bbc.com/news/uk-30804065"><h2>Snow and storms sweep across UK</h2></a>
+                <img src="http://news.bbcimg.co.uk/media/images/80272000/jpg/_80272006_80270521.jpg" /><p  style="border:none;padding-top:0;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque leo leo, finibus id nibh in, pharetra blandit nunc. Integer congue scelerisque felis vitae faucibus. Sed lobortis tortor eu mi ultrices, in pulvinar mi feugiat. Nam gravida accumsan iaculis. Curabitur libero elit, varius sed massa ac, vestibulum congue nisl. Mauris eu bibendum leo. Nullam in consequat dolor. Cras sed vulputate lectus.</p>
+            </div>
+            <div>
                 <img src="http://news.bbcimg.co.uk/media/images/80270000/jpg/_80270550_mjadzelics_cleared_07.jpg" />
-
-                <a href="http://www.bbc.com/news/uk-wales-30820349"><strong>Watkins ex cleared over abuse images</strong></a><br />
-                Donec erat nisi, fermentum in ipsum non, tincidunt consequat odio. Mauris venenatis id ex a vulputate. Morbi tempor nec magna sed tempus. Ut pulvinar pharetra pharetra. Vivamus turpis urna, vestibulum quis mi non, semper interdum massa. Nullam diam est, mollis luctus laoreet eget, commodo a ex. Nullam gravida mollis nisi. Curabitur porttitor turpis ac dolor congue vestibulum. Donec sit amet viverra nulla, sit amet dignissim mauris. Aliquam iaculis, lectus a tempus eleifend, est augue viverra mauris, eget feugiat nulla tortor sit amet dui. Suspendisse laoreet bibendum imperdiet. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam convallis luctus lectus eu fermentum.
-            </p>
-
-            
+                 <a href="http://www.bbc.com/news/uk-wales-30820349"><h3>Prison drug seizures increasing</h3></a>
+                 <p>
+                    Donec erat nisi, fermentum in ipsum non, tincidunt consequat odio. Mauris venenatis id ex a vulputate. Morbi tempor nec magna sed tempus. Ut pulvinar pharetra pharetra. Vivamus turpis urna, vestibulum quis mi non, semper interdum massa. Nullam diam est, mollis luctus laoreet eget, commodo a ex. Nullam gravida mollis nisi. Curabitur porttitor turpis ac dolor congue vestibulum. Donec sit amet viverra nulla, sit amet dignissim mauris. Aliquam iaculis, lectus a tempus eleifend, est augue viverra mauris, eget feugiat nulla tortor sit amet dui. Suspendisse laoreet bibendum imperdiet. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam convallis luctus lectus eu fermentum.
+                </p>
+            </div>            
         </div>
         <div id="right-bar">
         </div>
