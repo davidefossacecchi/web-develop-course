@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+    <!--create a reaction test-->
+    <title>Reaction Test</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />  
+    <style>
+        /*adding shapes, thanks to http://css-tricks.com/examples/ShapesOfCSS/ */
+        .hexagon {
+            width: 100px;
+            height: 55px;
+            background: blue;
+            position: relative;
+            top:50px;
+        }
+        .hexagon:before {
+            content: "";
+            position: absolute;
+            top: -25px;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 25px solid blue;
+        }
+        .hexagon:after {
+            content: "";
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-top: 25px solid blue;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid #00E400;
+            position:relative;
+            top:60px;
+        }
+        .yin-yang {
+            width: 96px;
+            height: 48px;
+            background: #eee; 
+            border-color: black;
+            border-style: solid;
+            border-width: 2px 2px 50px 2px;
+            border-radius: 100%;
+            position: relative;
+            top:70px;
+            left:100px;
+        }
+        .yin-yang:before{
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            background: #eee;
+            border: 18px solid black;
+            border-radius: 100%;
+            width: 12px;
+            height: 12px;
+        }
+        .yin-yang:after{
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background: black;
+            border: 18px solid #eee;
+            border-radius:100%;
+            width: 12px;
+            height: 12px;
+        }
+
+        .pacman {
+            width: 0px;
+            height: 0px;
+            border-right:60px solid transparent;
+            border-top: 60px solid yellow;
+            border-left: 60px solid yellow;
+            border-bottom: 60px solid yellow;
+            border-top-left-radius: 60px;
+            border-top-right-radius: 60px;
+            border-bottom-left-radius: 60px;
+            border-bottom-right-radius: 60px;
+            position:relative;
+            left:130px;
+            top:200px;
+        }
+        #top{
+            width:100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="top"><h1>Reaction Test Game</h1></div>
+    <div id="shape" class="triangle"></div>
+    <script>
+        var shapes = new Array("triangle", "hexagon", "pacman", "yin-yang");
+        var index=0;
+        var oldIndex;
+
+        document.getElementById("shape").onclick = function (){
+            oldIndex = index;
+            while(index == oldIndex){ //reiterate until the new shape isn't different from the ol one
+                index = Math.floor(Math.random()*shapes.length); 
+            }
+            document.getElementById("shape").className = shapes[index];
+            document.getElementById("shape").style.left = Math.ceil(700*Math.random())+"px";
+            document.getElementById("shape").style.top = Math.ceil(400*Math.random())+"px";
+        }
+
+    </script>
+</body>
+</html>
