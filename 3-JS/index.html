@@ -101,18 +101,70 @@
         #top{
             width:100%;
         }
+
+        #switch {
+            color: white;
+            font-weight:bold;
+            border-radius:3px;
+        }
+
+        button.on{
+            background:#0cdd01; 
+            border-color: #37e02e #0cdd01 #0cdd01 #37e02e;
+        }
+
+        button.off{
+            background:#f00000; 
+            border-color: #ff2525 #9f0000 #9f0000 #ff2525;
+        }
     </style>
 </head>
 
 <body>
-    <div id="top"><h1>Reaction Test Game</h1></div>
-    <div id="shape" class="triangle"></div>
+    <div id="top"><h1>Reaction Test Game</h1>
+    <h3>Click on shapes as fast as you can. Click on that button to <button id="switch" class="on">START</button>
+    <h3 id = "result"></h3></div>
+    <div id="shape" class=""></div>
     <script>
         var shapes = new Array("triangle", "hexagon", "pacman", "yin-yang");
         var index=0;
         var oldIndex;
+        var hasStarted = false;
+        var timeAccumulator = 0;
+        var shapeAccumulator = 0;
+        var mean, appearTime, clickTime, reactTime;
+
+        document.getElementById("switch").onclick = function () {
+            hasStarted = !hasStarted;
+            if (!hasStarted){
+                document.getElementById("switch").innerHTML="START";
+                document.getElementById("switch").className="on";
+                document.getElementById("shape").className = "";
+                if (shapeAccumulator != 0){
+                    mean = timeAccumulator/(shapeAccumulator*1000);
+                    document.getElementById("result").innerHTML="Your MRT (Mean Reaction Time): "+mean.toFixed(3)+"s";
+                }
+            }
+            else{
+                document.getElementById("switch").innerHTML="STOP";
+                document.getElementById("switch").className="off";
+                shapeAccumulator = 0;
+                timeAccumulator = 0;
+                chooseShape();
+            }
+        }
 
         document.getElementById("shape").onclick = function (){
+            clickTime = Date.now();
+            reactTime = clickTime - appearTime;
+            shapeAccumulator++;
+            timeAccumulator+=reactTime;
+            reactTime = reactTime/1000;
+            document.getElementById("result").innerHTML="You reacted in: "+reactTime+"s";
+            chooseShape();
+        }
+
+        function chooseShape(){
             oldIndex = index;
             while(index == oldIndex){ //reiterate until the new shape isn't different from the ol one
                 index = Math.floor(Math.random()*shapes.length); 
@@ -120,6 +172,7 @@
             document.getElementById("shape").className = shapes[index];
             document.getElementById("shape").style.left = Math.ceil(700*Math.random())+"px";
             document.getElementById("shape").style.top = Math.ceil(400*Math.random())+"px";
+            appearTime = Date.now();
         }
 
     </script>
