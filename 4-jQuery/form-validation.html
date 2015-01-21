@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+    <!--Form Validation Exercice-->
+    <title>Validating Form</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />  
+    <style>
+        body{
+            font-family:Arial;
+        }
+        #form-wrapper{
+            width:500px;
+            margin: auto;
+            font-size:20px;
+            text-align:center;
+        }
+
+        #form-wrapper input{
+            border-radius:15px;
+            padding:3px 9px;
+            font-size:20px;
+            border:1px solid grey;
+            margin:7px 0;
+        }
+
+        #submit{
+            background-color:green;
+            color: white;
+        }
+
+        #messages{
+            border-radius:8px;
+            color:white;
+            padding:2px;
+            font-size:12px;
+            font-weight:bold;
+        }
+
+        .error{
+            background-color:red;
+        }
+
+        .success{
+            background-color:green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="form-wrapper">
+        <div id="messages"></div>
+        <form id="form">
+            <label for="email">@:</label>
+            <input id="email" name="email" placeholder="email" />
+            <br>
+            <label for="phone">T:</label>
+            <input id="phone" name="phone" placeholder="phone" />
+            <br>
+            <label for="password">*:</label>
+            <input id="password" type="password" name="password" placeholder="password" />
+            <br>
+            <label for="password-confirm">**:</label>
+            <input id="password-confirm" type="password" name="password-confirm" placeholder="password confirmation" />
+            <br>
+            <input type="submit" id="submit" value="Submit" />
+        </form>
+    </div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $('#messages').hide();
+        $('#form').submit(function(event){
+            var errorMsg = "Invalid";
+            var errorMsgs = new Array();
+            event.preventDefault(); //prevent the default action to be performed
+            if(!isValidEmailAddress($('#email').val())) errorMsgs.push("email");
+
+            if(!$.isNumeric($('#phone').val())) errorMsgs.push("phone number");
+
+            if($('#password').val()!=$('#password-confirm').val()) errorMsgs.push("passwords doesn't match");
+
+            for (var i = 0; i < errorMsgs.length; i++){
+                if (errorMsg == "Invalid") {
+                    if (errorMsgs[i] == "passwords doesn't match") errorMsg = "Passwords doesn't match";
+                    else errorMsg = errorMsg + " " + errorMsgs[i];
+                        
+                }
+                else{
+                    if (i == errorMsgs.length-1) errorMsg = errorMsg + " and " + errorMsgs[i];
+                    else errorMsg = errorMsg + ", " + errorMsgs[i];
+                }
+            }
+
+            if (errorMsg != "Invalid") {
+                $('#messages').fadeOut(750, function(){
+                    $('#messages').attr('class','error');
+                    $('#messages').html(errorMsg);
+                });
+                $('#messages').fadeIn(750);
+            }
+            else{
+                $('#messages').fadeOut(750, function(){
+                    $('#messages').attr('class','success');
+                    $('#messages').html("Form successfully submitted");
+                });
+                $('#messages').fadeIn(750);
+            }
+        });
+
+        function isValidEmailAddress(emailAddress) { //copied and pasted from stack overflow as suggested by the teacher
+            var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
+            return pattern.test(emailAddress);
+        };
+
+    </script>
+</body>
+</html>
