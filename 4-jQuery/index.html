@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <!--Form Validation Exercice-->
+    <title>Code Player</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />  
+    <style>
+        body{
+            font-family:Arial;
+        }
+        li.button {
+            border:1px solid grey;
+            float:left;
+            list-style:none;
+            padding:5px;
+        }
+        .clicked{
+            background-color:#999999;
+            color:white;
+        }
+        ul{
+            width:300px;
+            margin: 0 auto;
+        }
+        #html{
+            border-radius: 3px 0px 0px 3px;
+        }
+        #result{
+            border-radius: 0px 3px 3px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+    <h2 style="float:left;margin:0;">CodePlayer</h2>
+    
+        <ul>
+            <li id="html" class="button">HTML</li>
+            <li id="css" class="button">CSS</li>
+            <li id="js" class="button">JS</li>
+            <li id="result" class="button">Result</li>
+        </ul>
+    
+    <button style="float:right;">Run</button>
+    <div>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        var clicked = new Array();
+        var buttons = $('.button');
+        
+        for (var i = 0; i < buttons.length; i++) clicked[buttons[i].id] = false;
+        
+        $('.button').click(function(event){
+            $(this).toggleClass('clicked');
+        });
+    </script>
+</body>
+</html>
