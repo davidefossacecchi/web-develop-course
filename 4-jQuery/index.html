@@ -52,15 +52,16 @@
             height:100%;
             margin: 0;
             padding: 0;
+            display: none;
         }
         div#textareas-wrapper{
             float:left;
-            font-family: monotype;
         }
-        div#result-area{
+        #result-area{
             border:1px solid grey;
             height:100%;
             float:left;
+            display: none;
         }
 
     </style>
@@ -84,7 +85,7 @@
         <textarea id="css-area"></textarea>
         <textarea id="js-area"></textarea>
     </div>
-    <div id="result-area"></div>
+    <iframe id="result-area"></iframe>
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script>
@@ -96,20 +97,18 @@
         $('#result-area').height($(window).height() - $('#topbar').height());
         for (var i = 0; i < buttons.length; i++) {
             clicked[buttons[i].id] = false;
-            $("#" + buttons[i].id + "-area").hide();
         }
+        $("#run").click( function() {
+            $("#result-area").contents().find("html").html("<style>"+$("#css-area").val()+"</style>"+$("#html-area").val());
+            document.getElementById("result-area").contentWindow.eval($("#js-area").val());
+        });
         
         $('.button').click(function(event){
             $(this).toggleClass('clicked');
+            $("#" + $(this).attr('id') + "-area").toggle();
             clicked[$(this).attr('id')] = !clicked[$(this).attr('id')];
-            if (clicked[$(this).attr('id')]) {
-                $("#" + $(this).attr('id') + "-area").show();
-                shown.push("#" + $(this).attr('id') + "-area");
-            }
-            else {
-                $("#" + $(this).attr('id') + "-area").hide();
-                removeShown("#" + $(this).attr('id') + "-area");
-            }
+            if (clicked[$(this).attr('id')]) shown.push("#" + $(this).attr('id') + "-area");
+            else removeShown("#" + $(this).attr('id') + "-area");
             updateWidth();
         });
         function removeShown(itemId){
@@ -117,9 +116,11 @@
                 if (shown[i] == itemId) shown.splice(i,1);
         }
         function updateWidth(){
-            for (var i = 0; i < shown.length; i++)
+            for (var i = 0; i < shown.length; i++){
                 $(shown[i]).width(Math.floor($(window).width()/shown.length)-10);
+            }
         }
+        
     </script>
 </body>
 </html>
