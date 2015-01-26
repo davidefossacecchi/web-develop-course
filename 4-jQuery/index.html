@@ -10,6 +10,7 @@
     <style>
         body{
             font-family:Arial;
+            margin: 0;
         }
         li.button {
             border:1px solid grey;
@@ -31,33 +32,94 @@
         #result{
             border-radius: 0px 3px 3px 0px;
         }
+
+        #run{
+            float:right;
+            font-size: 18px;
+        }
+
+        h1{
+            float:left;
+            margin:0;
+            font-size:24px;  
+        }
+
+        div#topbar{
+            height: 40px;
+            padding-top: 5px;
+        }
+        textarea{
+            height:100%;
+            margin: 0;
+            padding: 0;
+        }
+        div#textareas-wrapper{
+            float:left;
+            font-family: monotype;
+        }
+        div#result-area{
+            border:1px solid grey;
+            height:100%;
+            float:left;
+        }
+
     </style>
 </head>
 
 <body>
-    <div>
-    <h2 style="float:left;margin:0;">CodePlayer</h2>
-    
-        <ul>
-            <li id="html" class="button">HTML</li>
-            <li id="css" class="button">CSS</li>
-            <li id="js" class="button">JS</li>
-            <li id="result" class="button">Result</li>
-        </ul>
-    
-    <button style="float:right;">Run</button>
-    <div>
+    <div id="topbar">
+        <h1>CodePlayer</h1>
+        
+            <ul>
+                <li id="html" class="button">HTML</li>
+                <li id="css" class="button">CSS</li>
+                <li id="js" class="button">JS</li>
+                <li id="result" class="button">Result</li>
+            </ul>
+        
+        <button id="run">Run</button>
+    </div>
+    <div id="textareas-wrapper">
+        <textarea id="html-area"></textarea>
+        <textarea id="css-area"></textarea>
+        <textarea id="js-area"></textarea>
+    </div>
+    <div id="result-area"></div>
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script>
         var clicked = new Array();
         var buttons = $('.button');
+        var shown = new Array();
         
-        for (var i = 0; i < buttons.length; i++) clicked[buttons[i].id] = false;
+        $('#textareas-wrapper').height($(window).height() - $('#topbar').height());
+        $('#result-area').height($(window).height() - $('#topbar').height());
+        for (var i = 0; i < buttons.length; i++) {
+            clicked[buttons[i].id] = false;
+            $("#" + buttons[i].id + "-area").hide();
+        }
         
         $('.button').click(function(event){
             $(this).toggleClass('clicked');
+            clicked[$(this).attr('id')] = !clicked[$(this).attr('id')];
+            if (clicked[$(this).attr('id')]) {
+                $("#" + $(this).attr('id') + "-area").show();
+                shown.push("#" + $(this).attr('id') + "-area");
+            }
+            else {
+                $("#" + $(this).attr('id') + "-area").hide();
+                removeShown("#" + $(this).attr('id') + "-area");
+            }
+            updateWidth();
         });
+        function removeShown(itemId){
+            for (var i = 0; i < shown.length; i++)
+                if (shown[i] == itemId) shown.splice(i,1);
+        }
+        function updateWidth(){
+            for (var i = 0; i < shown.length; i++)
+                $(shown[i]).width(Math.floor($(window).width()/shown.length)-10);
+        }
     </script>
 </body>
 </html>
