@@ -8,7 +8,7 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -30,6 +30,14 @@
         margin-top: 22%;
       }
 
+      .less-margined{
+        margin-top: 10%;
+      }
+
+      textarea{
+        height: 70vh !important;
+      }
+
       #login-form{
         border-radius:3px;
         background-color: rgba(255,255,255,0.5);
@@ -49,7 +57,7 @@
   
     <body>
     <div class="container">
-      <div class="margined row">
+       <div class="margined row">
         <div class="col-md-2">
         </div>
         <div class="col-md-2 pull-right">
@@ -66,7 +74,7 @@
               <input type="password" name="password" class="form-control" placeholder="password"/>
             </div>
             <div class="centered form-group">
-              <button class="btn btn-success" name="submit" value="Login"><span class="glyphicon glyphicon-send"></span> Login</button>
+              <button class="btn btn-success" name="submit" value="login"><span class="glyphicon glyphicon-send"></span> Login</button>
             </div>
           </form>
         </div>
@@ -76,5 +84,59 @@
     <script src="js/jquery-2.1.3.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script>
+    
+    var loginForm='<div class="margined row">'+
+        '<div class="col-md-2">'+
+        '</div>'+
+        '<div class="col-md-2 pull-right">'+
+        '</div>'+
+        '<div class="col-md-4 pull-right">'+
+          '<h1>MySecretDiary</h1>'+
+        '</div>'+
+        '<div class="col-md-4" id="login-form">'+
+           '<form>'+
+            '<div class="form-group">'+
+              '<input type="email" name="email" class="form-control" placeholder="e-mail"/>'+
+            '</div>'+
+            '<div class="form-group">'+
+              '<input type="password" name="password" class="form-control" placeholder="password"/>'+
+            '</div>'+
+            '<div class="centered form-group">'+
+              '<button class="btn btn-success" name="submit" value="login"><span class="glyphicon glyphicon-send"></span> Login</button>'+
+            '</div>'+
+          '</form>'+
+        '</div>'+
+      '</div>';
+
+     var diaryForm = '<div class="less-margined row">'+
+        '<div class="col-md-8 col-md-offset-2">'+
+          '<form>'+
+            '<div class="form-group">'+
+              '<textarea name="diary-content" class="form-control"></textarea>'+
+            '</div>'+
+            '<div class="centered form-group">'+
+              '<button class="btn btn-success" name="submit" value="save"><span class="glyphicon glyphicon-ok"></span> Save</button>'+
+            '</div>'+
+          '</form>'+
+        '</div>'+
+      '</div>';
+
+      $('button').click(function(event){switchForm(event)});
+
+      function switchForm(event){
+        event.preventDefault();
+
+        var form = $('form').serializeArray();
+        form.push({name: "process", value: $('button').val()});
+
+        $.post("main.php",form,function(data){
+            if(data == "GRANTED") $('.container').html(diaryForm);
+            if(data == "SAVED") $('.container').html(loginForm);
+            $('button').click(function(event){switchForm(event)});
+          }
+        );
+      }
+    </script>
   </body>
 </html>
