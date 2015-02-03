@@ -131,8 +131,9 @@
         form.push({name: "process", value: $('button').val()});
 
         $.post("main.php",form,function(data){
-            if(data == "GRANTED") $('.container').html(diaryForm);
-            if(data == "SAVED") $('.container').html(loginForm);
+            data=$.parseJSON(data);
+            if(data.result == "GRANTED") $('.container').html(diaryForm);
+            if(data.result == "SAVED") $('.container').html(loginForm);
             $('button').click(function(event){switchForm(event)});
           }
         );
