@@ -35,7 +35,7 @@
       }
 
       textarea{
-        height: 70vh !important;
+        min-height: 70vh !important;
       }
 
       #login-form{
@@ -131,10 +131,25 @@
         form.push({name: "process", value: $('button').val()});
 
         $.post("main.php",form,function(data){
+            alert(data);
             data=$.parseJSON(data);
-            if(data.result == "GRANTED") $('.container').html(diaryForm);
-            if(data.result == "SAVED") $('.container').html(loginForm);
-            $('button').click(function(event){switchForm(event)});
+            if(data.result == "GRANTED"){
+              $('.container').fadeOut(750, function(){
+                $('.container').html(diaryForm);
+                $('textarea').html(data.diary);
+              });
+              $('.container').fadeIn(750, function(){
+                $('button').click(function(event){switchForm(event)});
+              });
+            }
+            if(data.result == "SAVED"){
+              $('.container').fadeOut(750, function(){
+                $('.container').html(loginForm);
+              });
+              $('.container').fadeIn(750, function(){
+                $('button').click(function(event){switchForm(event)});
+              });
+            }
           }
         );
       }
