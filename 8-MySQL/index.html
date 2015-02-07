@@ -26,12 +26,22 @@
         height: 100%;
       }
 
-      .margined{
-        margin-top: 22%;
+      div.margin{
+        height: 40vh;
+        width: 100%;
+        position: relative;
       }
 
-      .less-margined{
-        margin-top: 10%;
+      div.less-margin{
+        height: 15vh;
+        width: 100%;
+        position: relative;
+      }
+
+      div.message{
+        position: absolute;
+        bottom: 0;
+        width:100%;
       }
 
       textarea{
@@ -57,7 +67,10 @@
   
     <body>
     <div class="container">
-       <div class="margined row">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2"><div class="margin"></div></div>
+      </div>
+       <div class="row">
         <div class="col-md-2">
         </div>
         <div class="col-md-2 pull-right">
@@ -86,7 +99,10 @@
     <script src="js/bootstrap.min.js"></script>
     <script>
     
-    var loginForm='<div class="margined row">'+
+    var loginForm='<div class="row">'+
+        '<div class="col-md-8 col-md-offset-2"><div class="margin"></div></div>'+
+      '</div>'+
+    '<div class="row">'+
         '<div class="col-md-2">'+
         '</div>'+
         '<div class="col-md-2 pull-right">'+
@@ -109,7 +125,10 @@
         '</div>'+
       '</div>';
 
-     var diaryForm = '<div class="less-margined row">'+
+     var diaryForm = '<div class="row">'+
+        '<div class="col-md-8 col-md-offset-2"><div class="less-margin"></div></div>'+
+      '</div>'+
+      '<div class="row">'+
         '<div class="col-md-8 col-md-offset-2">'+
           '<form>'+
             '<div class="form-group">'+
@@ -131,7 +150,6 @@
         form.push({name: "process", value: $('button').val()});
 
         $.post("main.php",form,function(data){
-            alert(data);
             data=$.parseJSON(data);
             if(data.result == "GRANTED"){
               $('.container').fadeOut(750, function(){
@@ -150,6 +168,9 @@
                 $('button').click(function(event){switchForm(event)});
               });
             }
+            if(data.result == "LOGIN_ERROR") $('.margin').html('<div class="alert message alert-danger" role="alert">Incorrect Password</div>');
+            if(data.result == "EMPTY_FIELDS") $('.margin').html('<div class="alert message alert-danger" role="alert">There are empty fileds</div>');
+            if(data.result == "SAVING_ERROR") $('.margin').html('<div class="alert message alert-danger" role="alert">An error occured while saving</div>');
           }
         );
       }
