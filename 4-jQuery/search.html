@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Search Effect</title>
+
+    
+    <style>
+      .container{
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        margin: 5px;
+      }
+
+      #green{
+        background-color:green;
+      }
+
+      #red{
+        background-color:red;
+      }
+
+      #blue{
+        background-color:blue;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" id="search" placeholder="Search" />
+    <div class="container" id="green"></div>
+    <div class="container" id="red"></div>
+    <div class="container" id="blue"></div>
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script>
+      $('#search').keyup(function(){
+        $(".container").each(function(){
+          if ($(this).attr("id").toLowerCase().indexOf($("#search").val())>=0) $(this).fadeIn(250);
+          else $(this).fadeOut(250);
+        })
+      });
+    </script>
+  </body>
+</html>
